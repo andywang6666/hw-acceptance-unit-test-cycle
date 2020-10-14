@@ -21,6 +21,12 @@ module NavigationHelpers
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
 
+    when /^the edit page for "(.*)"$/ then ['/movies', Movie.find_by(:title => $1).id.to_s, 'edit'].join('/')
+      
+    when /^the details page for "(.*)"$/ then ['/movies', Movie.find_by(:title => $1).id.to_s].join('/')
+      
+    when /^the Similar Movies page for "(.*)"$/ then ['/movies', Movie.find_by(:title => $1).id.to_s, 'similar_movies'].join('/')
+
     else
       begin
         page_name =~ /^the (.*) page$/
